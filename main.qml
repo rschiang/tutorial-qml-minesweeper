@@ -16,7 +16,7 @@ Window {
 
     Grid {
         id: table
-        columns: 16
+        columns: 4
         rows: columns
         anchors.centerIn: parent
         property int numberOfMine
@@ -30,13 +30,13 @@ Window {
                     if (text == "") {
                         if (modelData == table.numberOfMine) {
                           text = "X" // 踩到地雷
-                        } else if (modelData == (table.numberOfMine - 1) && (table.numberOfMine % 16 != 0)) {
+                        } else if (modelData == (table.numberOfMine - 1) && (table.numberOfMine % table.columns != 0)) {
                           text = "1" // 這是地雷左邊
-                        } else if (modelData == (table.numberOfMine + 1) && (table.numberOfMine % 16 != 15)) {
+                        } else if (modelData == (table.numberOfMine + 1) && (table.numberOfMine % table.columns != (table.columns - 1))) {
                           text = "1" // 這是地雷右邊
-                        } else if (modelData == (table.numberOfMine - 16) && (table.numberOfMine >= 16)) {
+                        } else if (modelData == (table.numberOfMine - table.columns) && (Math.floor(table.numberOfMine / table.columns) != 0)) {
                           text = "1" // 這是地雷上面
-                        } else if (modelData == (table.numberOfMine + 16) && (table.numberOfMine < 240)) {
+                        } else if (modelData == (table.numberOfMine + table.columns) && (Math.ceil(table.numberOfMine / table.columns) != table.columns)) {
                           text = "1" // 這是地雷下面
                         } else {
                           text = " " // 沒有地雷
@@ -49,6 +49,6 @@ Window {
     }
 
     Component.onCompleted: {
-        table.numberOfMine = Math.round(Math.random() * 256)
+        table.numberOfMine = Math.round(Math.random() * Math.pow(table.columns, 2))
     }
 }
