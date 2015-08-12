@@ -1,5 +1,5 @@
-tutorial-workshop-clock
-=======================
+tutorial-qml-minesweeper
+========================
 
 ![螢幕截圖](screenshot.png)
 
