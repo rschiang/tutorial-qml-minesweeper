@@ -23,7 +23,7 @@ Window {
             text: "容易"
             onClicked: {
                 table.columns = 4
-                table.numberOfMine = Math.round(Math.random() * Math.pow(table.columns, 2))
+                recalculateMine()
             }
         }
 
@@ -31,7 +31,7 @@ Window {
             text: "普通"
             onClicked: {
                 table.columns = 8
-                table.numberOfMine = Math.round(Math.random() * Math.pow(table.columns, 2))
+                recalculateMine()
             }
         }
 
@@ -39,7 +39,7 @@ Window {
             text: "困難"
             onClicked: {
                 table.columns = 16
-                table.numberOfMine = Math.round(Math.random() * Math.pow(table.columns, 2))
+                recalculateMine()
             }
         }
     }
@@ -101,7 +101,12 @@ Window {
         }
     }
 
-    Component.onCompleted: {
+    function recalculateMine() {
+        // 因為尺寸變動了，所以重新計算地雷位置
         table.numberOfMine = Math.round(Math.random() * Math.pow(table.columns, 2))
+    }
+
+    Component.onCompleted: {
+        recalculateMine()
     }
 }
