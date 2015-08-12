@@ -6,6 +6,7 @@ Window {
     visible: true
     width: 480
     height: 480
+    title: "開源踩地雷"
 
     Rectangle {
         id: background
@@ -59,7 +60,7 @@ Window {
                 onClicked: {
                     if (text == "") {
                         if (modelData == table.numberOfMine) {
-                          text = "X" // 踩到地雷
+                          text = "X" // 踩到地雷
                             animation.start()
                         }
                         else if (modelData == (table.numberOfMine - 1) && (table.numberOfMine % table.columns != 0)) {
